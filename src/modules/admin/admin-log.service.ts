@@ -28,7 +28,6 @@ export class AdminLogService {
         },
       });
     } catch (error) {
-      // Admin log should not crash main operation
       console.error('Failed to create admin log:', error);
     }
   }
