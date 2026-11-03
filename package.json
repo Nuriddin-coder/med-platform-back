@@ -6,11 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "type": "module",
-  "engines": {
-    "node": ">=22.0.0"
-  },
   "scripts": {
-    "build": "nest build",
+    "build": "npx prisma generate && nest build",
+    "build:nest": "nest build",
     "deploy": "nest deploy",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
