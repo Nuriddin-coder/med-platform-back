@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: med_postgres_prod
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be provided}
+      POSTGRES_DB: ${POSTGRES_DB:-med_platform}
+    volumes:
+      - postgres_prod_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-med_platform}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - med_prod_network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: med_backend_prod
+    restart: always
+    ports:
+      - "${PORT:-4000}:4000"
+    environment:
+      - PORT=4000
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET:?JWT_ACCESS_SECRET must be set}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:?JWT_REFRESH_SECRET must be set}
+      - JWT_ACCESS_EXPIRES_IN=${JWT_ACCESS_EXPIRES_IN:-15m}
+      - JWT_REFRESH_EXPIRES_IN=${JWT_REFRESH_EXPIRES_IN:-7d}
+      - CORS_ORIGINS=${CORS_ORIGINS}
+      - UPLOAD_DIR=/app/uploads
+      - MAX_FILE_SIZE_MB=${MAX_FILE_SIZE_MB:-10}
+      - APP_URL=${APP_URL}
+      - WEB_URL=${WEB_URL}
+      - ADMIN_URL=${ADMIN_URL}
+      - SEED_SUPER_ADMIN_EMAIL=${SEED_SUPER_ADMIN_EMAIL}
+      - SEED_SUPER_ADMIN_PASSWORD=${SEED_SUPER_ADMIN_PASSWORD}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - backend_prod_uploads:/app/uploads
+      - backend_prod_storage:/app/storage
+    networks:
+      - med_prod_network
+
+volumes:
+  postgres_prod_data:
+  backend_prod_uploads:
+  backend_prod_storage:
+
+networks:
+  med_prod_network:
+    driver: bridge
+

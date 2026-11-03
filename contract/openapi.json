@@ -1,0 +1,6745 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "operationId": "HealthController_check",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Tizim muvaffaqiyatli ishlayapti",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Tizim salomatligi va ishchi holatini tekshirish",
+        "tags": [
+          "Health"
+        ]
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "operationId": "AuthController_register",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Yangi bemor sifatida ro‘yxatdan o‘tish",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Tizimga kirish (email yoki telefon orqali)",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/refresh": {
+      "post": {
+        "operationId": "AuthController_refresh",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Access tokenni yangilash (Refresh rotation)",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tizimdan chiqish (refresh tokenni bekor qilish)",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/forgot-password": {
+      "post": {
+        "operationId": "AuthController_forgotPassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Parolni tiklash so‘rovi (email/telefon)",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/reset-password": {
+      "post": {
+        "operationId": "AuthController_resetPassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Parolni tiklash tokeni orqali yangilash",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/verify-email": {
+      "post": {
+        "operationId": "AuthController_verifyEmail",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyEmailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Emailni tasdiqlash",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/resend-verification": {
+      "post": {
+        "operationId": "AuthController_resendVerification",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Email tasdiqlash kodini qayta yuborish",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/me": {
+      "get": {
+        "operationId": "AuthController_getMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy foydalanuvchi maʼlumotlarini olish",
+        "tags": [
+          "Auth"
+        ]
+      },
+      "patch": {
+        "operationId": "AuthController_updateMe",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMeDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy profil maʼlumotlarini tahrirlash",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/auth/change-password": {
+      "patch": {
+        "operationId": "AuthController_changePassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy parolni yangisiga almashtirish",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "operationId": "UsersController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "role",
+            "required": false,
+            "in": "query",
+            "description": "Foydalanuvchi roli bo‘yicha filtr",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "SUPER_ADMIN",
+                "ADMIN",
+                "DOCTOR",
+                "PATIENT",
+                "CLINIC_MANAGER"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Foydalanuvchi statusi bo‘yicha filtr",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "PENDING_VERIFICATION"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedUserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Foydalanuvchilar ro‘yxatini olish (Admin)",
+        "tags": [
+          "Users"
+        ]
+      },
+      "post": {
+        "operationId": "UsersController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Yangi foydalanuvchi yaratish (Admin)",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "operationId": "UsersController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "ID bo‘yicha foydalanuvchini olish (Admin)",
+        "tags": [
+          "Users"
+        ]
+      },
+      "patch": {
+        "operationId": "UsersController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Foydalanuvchini tahrirlash (Admin)",
+        "tags": [
+          "Users"
+        ]
+      },
+      "delete": {
+        "operationId": "UsersController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Foydalanuvchi muvaffaqiyatli o‘chirildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Foydalanuvchini o‘chirish (Admin)",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1/users/{id}/block": {
+      "patch": {
+        "operationId": "UsersController_block",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Foydalanuvchini bloklash (Admin)",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1/users/{id}/unblock": {
+      "patch": {
+        "operationId": "UsersController_unblock",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Foydalanuvchini blokdan chiqarish (Admin)",
+        "tags": [
+          "Users"
+        ]
+      }
+    },
+    "/api/v1/patients/me": {
+      "get": {
+        "operationId": "PatientsController_getMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy bemor profili (faqat bemor)",
+        "tags": [
+          "Patients"
+        ]
+      },
+      "patch": {
+        "operationId": "PatientsController_updateMe",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePatientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy bemor profilini yangilash (faqat bemor)",
+        "tags": [
+          "Patients"
+        ]
+      }
+    },
+    "/api/v1/patients": {
+      "get": {
+        "operationId": "PatientsController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PatientResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Bemorlar ro‘yxati (Admin: barchasi, Doktor: faqat o‘zining bemorlari)",
+        "tags": [
+          "Patients"
+        ]
+      }
+    },
+    "/api/v1/patients/{id}": {
+      "get": {
+        "operationId": "PatientsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Ruxsat berilmagan"
+          },
+          "404": {
+            "description": "Bemor topilmadi"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Bemor tafsilotlari (A, D-ruxsatli)",
+        "tags": [
+          "Patients"
+        ]
+      },
+      "patch": {
+        "operationId": "PatientsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePatientDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientResponseDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bemor topilmadi"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Bemor profilini tahrirlash (faqat admin)",
+        "tags": [
+          "Patients"
+        ]
+      }
+    },
+    "/api/v1/doctors": {
+      "get": {
+        "operationId": "DoctorsController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "specializationId",
+            "required": false,
+            "in": "query",
+            "description": "Mutaxassislik ID bo‘yicha filtr",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinicId",
+            "required": false,
+            "in": "query",
+            "description": "Klinika ID bo‘yicha filtr",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "required": false,
+            "in": "query",
+            "description": "Shahar bo‘yicha filtr",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceId",
+            "required": false,
+            "in": "query",
+            "description": "Xizmat ID bo‘yicha filtr",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minPrice",
+            "required": false,
+            "in": "query",
+            "description": "Minimal konsultatsiya narxi",
+            "schema": {
+              "minimum": 0,
+              "example": 50000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "maxPrice",
+            "required": false,
+            "in": "query",
+            "description": "Maksimal konsultatsiya narxi",
+            "schema": {
+              "minimum": 0,
+              "example": 300000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "minRating",
+            "required": false,
+            "in": "query",
+            "description": "Minimal reyting",
+            "schema": {
+              "minimum": 0,
+              "maximum": 5,
+              "example": 4.5,
+              "type": "number"
+            }
+          },
+          {
+            "name": "date",
+            "required": false,
+            "in": "query",
+            "description": "Qabul sanasi bo‘yicha filtr (YYYY-MM-DD)",
+            "schema": {
+              "example": "2026-11-03",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DoctorResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Shifokorlar ro‘yxati (qidiruv, filtrlar va saralash bilan)",
+        "tags": [
+          "Doctors"
+        ]
+      },
+      "post": {
+        "operationId": "DoctorsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDoctorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Yangi shifokor yaratish (Admin)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/me": {
+      "get": {
+        "operationId": "DoctorsController_getMe",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy shifokor profilini olish (Doctor)",
+        "tags": [
+          "Doctors"
+        ]
+      },
+      "patch": {
+        "operationId": "DoctorsController_updateMe",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDoctorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy shifokor profilini tahrirlash (Doctor)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/me/schedules": {
+      "get": {
+        "operationId": "DoctorsController_getMySchedules",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DoctorScheduleResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy shifokor ish jadvallarini olish (Doctor)",
+        "tags": [
+          "Doctors"
+        ]
+      },
+      "put": {
+        "operationId": "DoctorsController_updateMySchedules",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDoctorSchedulesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DoctorScheduleResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy shifokor ish jadvallarini to‘liq yangilash (Doctor)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/me/patients": {
+      "get": {
+        "operationId": "DoctorsController_getMyPatients",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PatientResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Joriy shifokor qabulida bo‘lgan bemorlar ro‘yxati (Doctor)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/me/certificates": {
+      "post": {
+        "operationId": "DoctorsController_addCertificate",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCertificateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CertificateResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Sertifikat qo‘shish (Doctor)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/me/certificates/{id}": {
+      "delete": {
+        "operationId": "DoctorsController_deleteCertificate",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Sertifikat muvaffaqiyatli o‘chirildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Sertifikatni o‘chirish (Doctor)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/{id}/slots": {
+      "get": {
+        "operationId": "DoctorsController_getSlots",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date",
+            "required": true,
+            "in": "query",
+            "description": "Qabul sanasi (YYYY-MM-DD)",
+            "schema": {
+              "example": "2026-11-03",
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinicId",
+            "required": true,
+            "in": "query",
+            "description": "Klinika ID",
+            "schema": {
+              "example": "c1-uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeSlotDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Shifokorning tanlangan sana va klinika bo‘yicha bo‘sh vaqt slotlari",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/{id}/reviews": {
+      "get": {
+        "operationId": "DoctorsController_getReviews",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ReviewResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Shifokorga qoldirilgan fikr-mulohazalar (Reviews)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/doctors/{id}": {
+      "get": {
+        "operationId": "DoctorsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "ID bo‘yicha shifokorni olish",
+        "tags": [
+          "Doctors"
+        ]
+      },
+      "patch": {
+        "operationId": "DoctorsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDoctorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DoctorResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Shifokorni tahrirlash (Admin)",
+        "tags": [
+          "Doctors"
+        ]
+      },
+      "delete": {
+        "operationId": "DoctorsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Shifokor muvaffaqiyatli o‘chirildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Shifokorni o‘chirish (Admin)",
+        "tags": [
+          "Doctors"
+        ]
+      }
+    },
+    "/api/v1/clinics": {
+      "get": {
+        "operationId": "ClinicsController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "city",
+            "required": false,
+            "in": "query",
+            "description": "Shahar bo‘yicha filtr",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "serviceId",
+            "required": false,
+            "in": "query",
+            "description": "Xizmat ID bo‘yicha filtr",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "minRating",
+            "required": false,
+            "in": "query",
+            "description": "Minimal reyting",
+            "schema": {
+              "minimum": 0,
+              "maximum": 5,
+              "example": 4.5,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClinicResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Klinikalar ro‘yxati (qidiruv va filtrlar bilan)",
+        "tags": [
+          "Clinics"
+        ]
+      },
+      "post": {
+        "operationId": "ClinicsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClinicDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClinicResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Yangi klinika yaratish (Admin)",
+        "tags": [
+          "Clinics"
+        ]
+      }
+    },
+    "/api/v1/clinics/{id}": {
+      "get": {
+        "operationId": "ClinicsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClinicDetailResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "ID bo‘yicha klinika va uning xizmatlarini olish",
+        "tags": [
+          "Clinics"
+        ]
+      },
+      "patch": {
+        "operationId": "ClinicsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClinicDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClinicResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Klinikani tahrirlash (Admin, Clinic Manager o‘ziniki)",
+        "tags": [
+          "Clinics"
+        ]
+      },
+      "delete": {
+        "operationId": "ClinicsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Klinika muvaffaqiyatli o‘chirildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Klinikani o‘chirish (Admin)",
+        "tags": [
+          "Clinics"
+        ]
+      }
+    },
+    "/api/v1/clinics/{id}/doctors": {
+      "post": {
+        "operationId": "ClinicsController_addDoctor",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddDoctorToClinicDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Doktor klinikaga muvaffaqiyatli biriktirildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Shifokorni klinikaga biriktirish (Admin, Clinic Manager)",
+        "tags": [
+          "Clinics"
+        ]
+      }
+    },
+    "/api/v1/clinics/{id}/doctors/{doctorId}": {
+      "delete": {
+        "operationId": "ClinicsController_removeDoctor",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "doctorId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Doktor klinikadan muvaffaqiyatli ajratildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Shifokorni klinikadan ajratish (Admin, Clinic Manager)",
+        "tags": [
+          "Clinics"
+        ]
+      }
+    },
+    "/api/v1/specializations": {
+      "get": {
+        "operationId": "SpecializationsController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SpecializationResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Barcha mutaxassisliklar ro‘yxati",
+        "tags": [
+          "Specializations"
+        ]
+      },
+      "post": {
+        "operationId": "SpecializationsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpecializationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecializationResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Yangi mutaxassislik yaratish (Admin)",
+        "tags": [
+          "Specializations"
+        ]
+      }
+    },
+    "/api/v1/specializations/{id}": {
+      "get": {
+        "operationId": "SpecializationsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecializationResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "ID bo‘yicha mutaxassislikni olish",
+        "tags": [
+          "Specializations"
+        ]
+      },
+      "patch": {
+        "operationId": "SpecializationsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSpecializationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpecializationResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Mutaxassislikni tahrirlash (Admin)",
+        "tags": [
+          "Specializations"
+        ]
+      },
+      "delete": {
+        "operationId": "SpecializationsController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Mutaxassislik muvaffaqiyatli o‘chirildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Mutaxassislikni o‘chirish (Admin)",
+        "tags": [
+          "Specializations"
+        ]
+      }
+    },
+    "/api/v1/services": {
+      "get": {
+        "operationId": "ServicesController_findAll",
+        "parameters": [
+          {
+            "name": "clinicId",
+            "required": false,
+            "in": "query",
+            "description": "Klinika ID bo‘yicha filtrlash",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServiceResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Xizmatlar ro‘yxati (ixtiyoriy clinicId bo‘yicha filtr)",
+        "tags": [
+          "Services"
+        ]
+      },
+      "post": {
+        "operationId": "ServicesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Yangi xizmat yaratish (Admin, Clinic Manager)",
+        "tags": [
+          "Services"
+        ]
+      }
+    },
+    "/api/v1/services/{id}": {
+      "get": {
+        "operationId": "ServicesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "ID bo‘yicha xizmatni olish",
+        "tags": [
+          "Services"
+        ]
+      },
+      "patch": {
+        "operationId": "ServicesController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Xizmatni tahrirlash (Admin, Clinic Manager)",
+        "tags": [
+          "Services"
+        ]
+      },
+      "delete": {
+        "operationId": "ServicesController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Xizmat muvaffaqiyatli o‘chirildi"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Xizmatni o‘chirish (Admin, Clinic Manager)",
+        "tags": [
+          "Services"
+        ]
+      }
+    },
+    "/api/v1/appointments": {
+      "post": {
+        "operationId": "AppointmentsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAppointmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Vaqt oralig‘i allaqachon band qilingan"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Yangi qabul yozish (faqat bemorlar)",
+        "tags": [
+          "Appointments"
+        ]
+      },
+      "get": {
+        "operationId": "AppointmentsController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "CONFIRMED",
+                "CANCELLED",
+                "COMPLETED",
+                "REJECTED"
+              ]
+            }
+          },
+          {
+            "name": "doctorId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174002",
+              "type": "string"
+            }
+          },
+          {
+            "name": "patientId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174001",
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinicId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174003",
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateFrom",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "example": "2026-11-01",
+              "type": "string"
+            }
+          },
+          {
+            "name": "dateTo",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "example": "2026-11-30",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppointmentResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabullar ro‘yxati (rolga qarab avtomatik filtrlanadi)",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/appointments/{id}": {
+      "get": {
+        "operationId": "AppointmentsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Ruxsat berilmagan"
+          },
+          "404": {
+            "description": "Qabul topilmadi"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabul tafsilotlari",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/appointments/{id}/reschedule": {
+      "patch": {
+        "operationId": "AppointmentsController_reschedule",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RescheduleAppointmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Slot band yoki status mos emas"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabul vaqtini ko‘chirish",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/appointments/{id}/cancel": {
+      "patch": {
+        "operationId": "AppointmentsController_cancel",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelAppointmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabulni bekor qilish",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/appointments/{id}/confirm": {
+      "patch": {
+        "operationId": "AppointmentsController_confirm",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabulni tasdiqlash",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/appointments/{id}/reject": {
+      "patch": {
+        "operationId": "AppointmentsController_reject",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectAppointmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabulni rad etish",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/appointments/{id}/complete": {
+      "patch": {
+        "operationId": "AppointmentsController_complete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabulni yakunlash",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/appointments/{id}/status": {
+      "patch": {
+        "operationId": "AppointmentsController_updateStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAppointmentStatusDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppointmentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabul statusini o‘zgartirish (faqat admin)",
+        "tags": [
+          "Appointments"
+        ]
+      }
+    },
+    "/api/v1/notifications": {
+      "get": {
+        "operationId": "NotificationsController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "isRead",
+            "required": false,
+            "in": "query",
+            "description": "Filter by read/unread status",
+            "schema": {
+              "example": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Foydalanuvchining bildirishnomalari ro‘yxati",
+        "tags": [
+          "Notifications"
+        ]
+      }
+    },
+    "/api/v1/notifications/unread-count": {
+      "get": {
+        "operationId": "NotificationsController_getUnreadCount",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnreadCountResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "O‘qilmagan bildirishnomalar soni",
+        "tags": [
+          "Notifications"
+        ]
+      }
+    },
+    "/api/v1/notifications/read-all": {
+      "patch": {
+        "operationId": "NotificationsController_markAllAsRead",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkAllReadResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Barcha bildirishnomalarni o‘qilgan deb belgilash",
+        "tags": [
+          "Notifications"
+        ]
+      }
+    },
+    "/api/v1/notifications/{id}/read": {
+      "patch": {
+        "operationId": "NotificationsController_markAsRead",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Bitta bildirishnomani o‘qilgan deb belgilash",
+        "tags": [
+          "Notifications"
+        ]
+      }
+    },
+    "/api/v1/medical-records": {
+      "post": {
+        "operationId": "MedicalRecordsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMedicalRecordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicalRecordResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Ushbu bemor bilan tasdiqlangan yoki yakunlangan qabul mavjud emas"
+          },
+          "409": {
+            "description": "Ko‘rsatilgan qabul mos kelmadi yoki allaqachon yozuv yaratilgan"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy yozuv yaratish (faqat shifokor, tasdiqlangan/yakunlangan qabuli bo‘lgan bemorga)",
+        "tags": [
+          "Medical"
+        ]
+      },
+      "get": {
+        "operationId": "MedicalRecordsController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "patientId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174001",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MedicalRecordResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy yozuvlar ro‘yxati (P: faqat o‘ziniki; D: qabuli bor bemorlar; A: barchasi)",
+        "tags": [
+          "Medical"
+        ]
+      }
+    },
+    "/api/v1/medical-records/{id}": {
+      "get": {
+        "operationId": "MedicalRecordsController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicalRecordResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Ruxsat berilmagan"
+          },
+          "404": {
+            "description": "Tibbiy yozuv topilmadi"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy yozuv tafsilotlari",
+        "tags": [
+          "Medical"
+        ]
+      },
+      "patch": {
+        "operationId": "MedicalRecordsController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateMedicalRecordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicalRecordResponseDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Faqat muallif tahrirlay oladi"
+          },
+          "404": {
+            "description": "Tibbiy yozuv topilmadi"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy yozuvni tahrirlash (faqat muallif shifokor)",
+        "tags": [
+          "Medical"
+        ]
+      }
+    },
+    "/api/v1/medical-documents": {
+      "post": {
+        "operationId": "MedicalDocumentsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file",
+                  "patientId",
+                  "type",
+                  "title"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Hujjat fayli (PDF, JPG, PNG, max 10MB)"
+                  },
+                  "patientId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174001"
+                  },
+                  "recordId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "example": "123e4567-e89b-12d3-a456-426614174002"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "LAB_RESULT",
+                      "DIAGNOSIS",
+                      "PRESCRIPTION",
+                      "IMAGING",
+                      "OTHER"
+                    ],
+                    "example": "LAB_RESULT"
+                  },
+                  "title": {
+                    "type": "string",
+                    "example": "Umumiy qon tahlili natijasi"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MedicalDocumentResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy hujjat yuklash (D, P: PDF, JPG, PNG, max 10MB)",
+        "tags": [
+          "Medical"
+        ]
+      },
+      "get": {
+        "operationId": "MedicalDocumentsController_findAll",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "patientId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174001",
+              "type": "string"
+            }
+          },
+          {
+            "name": "recordId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174002",
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "LAB_RESULT",
+                "DIAGNOSIS",
+                "PRESCRIPTION",
+                "IMAGING",
+                "OTHER"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MedicalDocumentResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy hujjatlar ro‘yxati",
+        "tags": [
+          "Medical"
+        ]
+      }
+    },
+    "/api/v1/medical-documents/{id}/download": {
+      "get": {
+        "operationId": "MedicalDocumentsController_download",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Fayl oqimi (stream)"
+          },
+          "403": {
+            "description": "Ruxsat berilmagan"
+          },
+          "404": {
+            "description": "Hujjat topilmadi"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy hujjatni yuklab olish (ruxsat tekshiriladi, stream)",
+        "tags": [
+          "Medical"
+        ]
+      }
+    },
+    "/api/v1/medical-documents/{id}": {
+      "delete": {
+        "operationId": "MedicalDocumentsController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hujjat muvaffaqiyatli o‘chirildi"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tibbiy hujjatni o‘chirish (muallif yoki admin)",
+        "tags": [
+          "Medical"
+        ]
+      }
+    },
+    "/api/v1/reviews": {
+      "post": {
+        "operationId": "ReviewsController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReviewResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Shifokorga baho va fikr-mulohaza qoldirish (Faqat bemor, COMPLETED qabul)",
+        "tags": [
+          "Reviews"
+        ]
+      }
+    },
+    "/api/v1/uploads/image": {
+      "post": {
+        "operationId": "UploadsController_uploadImage",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "file",
+                  "folder"
+                ],
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Rasm fayli (JPG, PNG, WEBP, max 10MB)"
+                  },
+                  "folder": {
+                    "type": "string",
+                    "enum": [
+                      "avatar",
+                      "clinic-logo",
+                      "clinic-image",
+                      "diploma"
+                    ],
+                    "example": "avatar",
+                    "description": "Rasm joylashadigan papka"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadedImageResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Ommaviy rasm yuklash (avatar, clinic-logo, clinic-image, diploma)",
+        "tags": [
+          "Uploads"
+        ]
+      }
+    },
+    "/api/v1/admin/stats": {
+      "get": {
+        "operationId": "AdminController_getStats",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminStatsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Platformaning umumiy statistikasi",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/admin/stats/appointments-chart": {
+      "get": {
+        "operationId": "AdminController_getAppointmentsChart",
+        "parameters": [
+          {
+            "name": "days",
+            "required": false,
+            "in": "query",
+            "description": "Necha kunlik statistika (standart: 30)",
+            "schema": {
+              "minimum": 1,
+              "maximum": 365,
+              "default": 30,
+              "example": 30,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppointmentsChartPointDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Qabullar statistikasi grafigi (kunlar bo‘yicha)",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/admin/logs": {
+      "get": {
+        "operationId": "AdminController_getLogs",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "Sahifa raqami",
+            "schema": {
+              "minimum": 1,
+              "default": 1,
+              "example": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "Har bir sahifadagi elementlar soni",
+            "schema": {
+              "minimum": 1,
+              "maximum": 100,
+              "default": 10,
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "Qidiruv so‘zi",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortBy",
+            "required": false,
+            "in": "query",
+            "description": "Saralash ustuni",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "required": false,
+            "in": "query",
+            "description": "Saralash tartibi",
+            "schema": {
+              "default": "desc",
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "action",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "BLOCK_USER",
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "example": "User",
+              "type": "string"
+            }
+          },
+          {
+            "name": "adminId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426614174001",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AdminLogResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Administrator harakatlari jurnali (audit log)",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/admin/settings": {
+      "get": {
+        "operationId": "AdminController_getSettings",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Platforma sozlamalarini olish",
+        "tags": [
+          "Admin"
+        ]
+      },
+      "patch": {
+        "operationId": "AdminController_updateSettings",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePlatformSettingsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlatformSettingsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Platforma sozlamalarini yangilash",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/admin/permissions": {
+      "get": {
+        "operationId": "AdminController_getPermissions",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PermissionsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Tizim huquqlari va ruxsatlar ro‘yxati",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/admin/permissions/{userId}": {
+      "put": {
+        "operationId": "AdminController_updateUserPermissions",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserPermissionsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserPermissionsResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Foydalanuvchiga huquqlar biriktirish",
+        "tags": [
+          "Admin"
+        ]
+      }
+    },
+    "/api/v1/public/overview": {
+      "get": {
+        "operationId": "PublicController_getOverview",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicOverviewResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Asosiy sahifa (landing) umumiy statistikasi",
+        "tags": [
+          "Public"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "MED Platform API",
+    "description": "MED Healthcare Platform Backend API Hujjatlari (Contract asosida yagona haqiqat manbai)",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [
+    {
+      "name": "Health",
+      "description": "Tizim ishchi holatini tekshirish"
+    },
+    {
+      "name": "Auth",
+      "description": "Autentifikatsiya va avtorizatsiya"
+    },
+    {
+      "name": "Users",
+      "description": "Foydalanuvchilarni boshqarish"
+    },
+    {
+      "name": "Patients",
+      "description": "Bemorlar profili va maʼlumotlari"
+    },
+    {
+      "name": "Doctors",
+      "description": "Shifokorlar profili, jadvallari va xizmatlari"
+    },
+    {
+      "name": "Clinics",
+      "description": "Klinikalar va ish soatlari"
+    },
+    {
+      "name": "Specializations",
+      "description": "Shifokorlik mutaxassisliklari"
+    },
+    {
+      "name": "Services",
+      "description": "Klinika va shifokor xizmatlari"
+    },
+    {
+      "name": "Appointments",
+      "description": "Qabullarga yozilish va boshqarish"
+    },
+    {
+      "name": "Medical",
+      "description": "Tibbiy yozuvlar va hujjatlar"
+    },
+    {
+      "name": "Notifications",
+      "description": "Bildirishnomalar"
+    },
+    {
+      "name": "Reviews",
+      "description": "Shifokorlarga fikr-mulohazalar"
+    },
+    {
+      "name": "Uploads",
+      "description": "Fayllar va rasmlarni yuklash"
+    },
+    {
+      "name": "Admin",
+      "description": "Administrator paneli: statistika, sozlamalar, loglar"
+    },
+    {
+      "name": "Public",
+      "description": "Ommaviy maʼlumotlar (landing page)"
+    }
+  ],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "name": "Authorization",
+        "description": "Bearer <accessToken> formatida access tokenni kiriting",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "HealthResponseDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "ok",
+            "description": "Tizim holati"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2026-11-02T10:00:00.000Z",
+            "description": "Tekshirilgan vaqt"
+          },
+          "uptimeSeconds": {
+            "type": "number",
+            "example": 42,
+            "description": "Uptime soniyalarda"
+          },
+          "environment": {
+            "type": "string",
+            "example": "development",
+            "description": "Muhit nomi"
+          }
+        },
+        "required": [
+          "status",
+          "timestamp",
+          "uptimeSeconds",
+          "environment"
+        ]
+      },
+      "RegisterDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Ali",
+            "description": "Foydalanuvchi ismi"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Valiyev",
+            "description": "Foydalanuvchi familiyasi"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "ali@med.uz",
+            "description": "Elektron pochta (email yoki phone majburiy)"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998901234567",
+            "description": "Telefon raqami (email yoki phone majburiy)"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6,
+            "example": "Secret123!",
+            "description": "Maxfiy parol (kamida 6 ta belgi)"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "password"
+        ]
+      },
+      "UserResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "description": "Foydalanuvchi unikal identifikatori (UUID)"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": "user@med.uz",
+            "description": "Elektron pochta manzili"
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "example": "+998901234567",
+            "description": "Telefon raqami"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Ali",
+            "description": "Ismi"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Valiyev",
+            "description": "Familiyasi"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true,
+            "example": "/uploads/avatars/ali.jpg",
+            "description": "Profil rasmi URL manzili"
+          },
+          "role": {
+            "enum": [
+              "SUPER_ADMIN",
+              "ADMIN",
+              "DOCTOR",
+              "PATIENT",
+              "CLINIC_MANAGER"
+            ],
+            "type": "string",
+            "example": "PATIENT",
+            "description": "Foydalanuvchi roli"
+          },
+          "status": {
+            "enum": [
+              "ACTIVE",
+              "BLOCKED",
+              "PENDING_VERIFICATION"
+            ],
+            "type": "string",
+            "example": "ACTIVE",
+            "description": "Akkaunt holati"
+          },
+          "isEmailVerified": {
+            "type": "boolean",
+            "example": false,
+            "description": "Email tasdiqlanganmi yoki yo‘q"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-02T10:00:00.000Z",
+            "description": "Yaratilgan sana (ISO 8601)"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "role",
+          "status",
+          "isEmailVerified",
+          "createdAt"
+        ]
+      },
+      "AuthResponseDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "JWT Access Token (15 daqiqa)"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "JWT Refresh Token (7 kun)"
+          },
+          "user": {
+            "description": "Foydalanuvchi maʼlumotlari",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UserResponseDto"
+              }
+            ]
+          },
+          "devToken": {
+            "type": "string",
+            "description": "Faqat development rejimida tekshirish/tasdiqlash tokeni"
+          }
+        },
+        "required": [
+          "accessToken",
+          "refreshToken",
+          "user"
+        ]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string",
+            "example": "ali@med.uz",
+            "description": "Login: elektron pochta manzili yoki telefon raqami"
+          },
+          "password": {
+            "type": "string",
+            "example": "Secret123!",
+            "description": "Foydalanuvchi paroli"
+          }
+        },
+        "required": [
+          "login",
+          "password"
+        ]
+      },
+      "RefreshTokenDto": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "description": "Yangi access token olish uchun Refresh Token"
+          }
+        },
+        "required": [
+          "refreshToken"
+        ]
+      },
+      "MessageResponseDto": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Amal muvaffaqiyatli bajarildi"
+          },
+          "devToken": {
+            "type": "string",
+            "description": "Faqat development rejimida tasdiqlash yoki tiklash tokeni"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "ForgotPasswordDto": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string",
+            "example": "ali@med.uz",
+            "description": "Parolni tiklash uchun email yoki telefon"
+          }
+        },
+        "required": [
+          "login"
+        ]
+      },
+      "ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Parolni tiklash tokeni"
+          },
+          "newPassword": {
+            "type": "string",
+            "minLength": 6,
+            "example": "NewSecret123!",
+            "description": "Yangi parol"
+          }
+        },
+        "required": [
+          "token",
+          "newPassword"
+        ]
+      },
+      "VerifyEmailDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Emailni tasdiqlash tokeni"
+          }
+        },
+        "required": [
+          "token"
+        ]
+      },
+      "UpdateMeDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Ali",
+            "description": "Ism"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Valiyev",
+            "description": "Familiya"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "example": "/uploads/avatars/new-avatar.png",
+            "description": "Profil rasmi manzili"
+          }
+        }
+      },
+      "ChangePasswordDto": {
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "type": "string",
+            "example": "OldSecret123!",
+            "description": "Joriy parol"
+          },
+          "newPassword": {
+            "type": "string",
+            "minLength": 6,
+            "example": "NewSecret123!",
+            "description": "Yangi parol"
+          }
+        },
+        "required": [
+          "oldPassword",
+          "newPassword"
+        ]
+      },
+      "PaginationMetaDto": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "number",
+            "example": 1,
+            "description": "Joriy sahifa raqami"
+          },
+          "limit": {
+            "type": "number",
+            "example": 10,
+            "description": "Har bir sahifadagi elementlar soni"
+          },
+          "total": {
+            "type": "number",
+            "example": 57,
+            "description": "Jami elementlar soni"
+          },
+          "totalPages": {
+            "type": "number",
+            "example": 6,
+            "description": "Jami sahifalar soni"
+          }
+        },
+        "required": [
+          "page",
+          "limit",
+          "total",
+          "totalPages"
+        ]
+      },
+      "PaginatedUserResponseDto": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserResponseDto"
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/PaginationMetaDto"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Sardor",
+            "description": "Ism"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Azimov",
+            "description": "Familiya"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "sardor@med.uz",
+            "description": "Elektron pochta"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998901112244",
+            "description": "Telefon raqami"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6,
+            "example": "Password123!",
+            "description": "Parol"
+          },
+          "role": {
+            "enum": [
+              "SUPER_ADMIN",
+              "ADMIN",
+              "DOCTOR",
+              "PATIENT",
+              "CLINIC_MANAGER"
+            ],
+            "type": "string",
+            "example": "DOCTOR",
+            "description": "Foydalanuvchi roli"
+          },
+          "status": {
+            "enum": [
+              "ACTIVE",
+              "BLOCKED",
+              "PENDING_VERIFICATION"
+            ],
+            "type": "string",
+            "example": "ACTIVE",
+            "description": "Foydalanuvchi holati"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "password",
+          "role"
+        ]
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Sardor",
+            "description": "Ism"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Azimov",
+            "description": "Familiya"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "sardor@med.uz",
+            "description": "Elektron pochta"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998901112244",
+            "description": "Telefon raqami"
+          },
+          "role": {
+            "enum": [
+              "SUPER_ADMIN",
+              "ADMIN",
+              "DOCTOR",
+              "PATIENT",
+              "CLINIC_MANAGER"
+            ],
+            "type": "string",
+            "example": "DOCTOR",
+            "description": "Foydalanuvchi roli"
+          },
+          "status": {
+            "enum": [
+              "ACTIVE",
+              "BLOCKED",
+              "PENDING_VERIFICATION"
+            ],
+            "type": "string",
+            "example": "ACTIVE",
+            "description": "Foydalanuvchi holati"
+          }
+        }
+      },
+      "PatientResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "userId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Bekzod"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Toshmatov"
+          },
+          "birthDate": {
+            "format": "date-time",
+            "type": "string",
+            "nullable": true,
+            "example": "1992-05-14T00:00:00.000Z"
+          },
+          "gender": {
+            "nullable": true,
+            "enum": [
+              "MALE",
+              "FEMALE"
+            ],
+            "type": "string",
+            "example": "MALE"
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "example": "+998902002001"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": "bekzod.patient@gmail.com"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true,
+            "example": "Toshkent sh., Chilonzor t., 19-mavze"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true,
+            "example": "/uploads/avatar/bekzod.jpg"
+          },
+          "bloodType": {
+            "type": "string",
+            "nullable": true,
+            "example": "A(II) Rh+"
+          },
+          "allergies": {
+            "type": "string",
+            "nullable": true,
+            "example": "Penitsillin"
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "firstName",
+          "lastName",
+          "birthDate",
+          "gender",
+          "phone",
+          "email",
+          "address",
+          "avatarUrl",
+          "bloodType",
+          "allergies"
+        ]
+      },
+      "UpdatePatientDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Bekzod"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Toshmatov"
+          },
+          "birthDate": {
+            "type": "string",
+            "example": "1992-05-14"
+          },
+          "gender": {
+            "enum": [
+              "MALE",
+              "FEMALE"
+            ],
+            "type": "string",
+            "example": "MALE"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998902002001"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "bekzod.patient@gmail.com"
+          },
+          "address": {
+            "type": "string",
+            "example": "Toshkent sh., Chilonzor t., 19-mavze"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "example": "/uploads/avatar/bekzod.jpg"
+          },
+          "bloodType": {
+            "type": "string",
+            "example": "A(II) Rh+"
+          },
+          "allergies": {
+            "type": "string",
+            "example": "Penitsillin"
+          }
+        }
+      },
+      "DoctorSpecializationBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "s1-uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Kardiologiya"
+          },
+          "slug": {
+            "type": "string",
+            "example": "kardiolog"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug"
+        ]
+      },
+      "CertificateResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "cert-1-uuid"
+          },
+          "title": {
+            "type": "string",
+            "example": "Toshkent Tibbiyot Akademiyasi diplomi"
+          },
+          "fileUrl": {
+            "type": "string",
+            "example": "/uploads/diploma/cert1.pdf"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "fileUrl"
+        ]
+      },
+      "DoctorClinicBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c1-uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Shox Med Center"
+          },
+          "city": {
+            "type": "string",
+            "example": "Toshkent"
+          },
+          "address": {
+            "type": "string",
+            "example": "Mirobod t., Oybek ko‘chasi, 12"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "city",
+          "address"
+        ]
+      },
+      "DoctorResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "d1-uuid"
+          },
+          "userId": {
+            "type": "string",
+            "example": "u1-uuid"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Anvar"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Karimov"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true,
+            "example": "/uploads/avatars/anvar.jpg"
+          },
+          "specialization": {
+            "$ref": "#/components/schemas/DoctorSpecializationBriefDto"
+          },
+          "specializationId": {
+            "type": "string",
+            "example": "s1-uuid"
+          },
+          "experienceYears": {
+            "type": "number",
+            "example": 12
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true,
+            "example": "Oliy toifali kardiolog"
+          },
+          "education": {
+            "type": "string",
+            "nullable": true,
+            "example": "Toshkent Tibbiyot Akademiyasi (2012)"
+          },
+          "certificates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CertificateResponseDto"
+            }
+          },
+          "consultationPrice": {
+            "type": "number",
+            "example": 200000
+          },
+          "rating": {
+            "type": "number",
+            "example": 4.9
+          },
+          "reviewsCount": {
+            "type": "number",
+            "example": 35
+          },
+          "clinics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DoctorClinicBriefDto"
+            }
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "firstName",
+          "lastName",
+          "specialization",
+          "specializationId",
+          "experienceYears",
+          "certificates",
+          "consultationPrice",
+          "rating",
+          "reviewsCount",
+          "clinics",
+          "isActive"
+        ]
+      },
+      "UpdateDoctorDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Anvar"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Karimov"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "example": "/uploads/avatars/anvar.jpg"
+          },
+          "specializationId": {
+            "type": "string",
+            "example": "spec-uuid-1"
+          },
+          "experienceYears": {
+            "type": "number",
+            "minimum": 0,
+            "example": 12
+          },
+          "bio": {
+            "type": "string",
+            "example": "Oliy toifali kardiolog"
+          },
+          "education": {
+            "type": "string",
+            "example": "Toshkent Tibbiyot Akademiyasi"
+          },
+          "consultationPrice": {
+            "type": "number",
+            "minimum": 0,
+            "example": 200000
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "DoctorScheduleResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "ds-1-uuid"
+          },
+          "doctorId": {
+            "type": "string",
+            "example": "d-1-uuid"
+          },
+          "clinicId": {
+            "type": "string",
+            "example": "c-1-uuid"
+          },
+          "dayOfWeek": {
+            "type": "number",
+            "example": 1
+          },
+          "startTime": {
+            "type": "string",
+            "example": "09:00"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "17:00"
+          },
+          "slotDurationMinutes": {
+            "type": "number",
+            "example": 30
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "doctorId",
+          "clinicId",
+          "dayOfWeek",
+          "startTime",
+          "endTime",
+          "slotDurationMinutes",
+          "isActive"
+        ]
+      },
+      "DoctorScheduleItemDto": {
+        "type": "object",
+        "properties": {
+          "clinicId": {
+            "type": "string",
+            "example": "c1-uuid",
+            "description": "Klinika ID"
+          },
+          "dayOfWeek": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 7,
+            "example": 1,
+            "description": "1=Dushanba ... 7=Yakshanba"
+          },
+          "startTime": {
+            "type": "string",
+            "example": "09:00",
+            "description": "Boshlanish vaqti (HH:mm)"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "17:00",
+            "description": "Tugash vaqti (HH:mm)"
+          },
+          "slotDurationMinutes": {
+            "type": "number",
+            "minimum": 10,
+            "example": 30,
+            "default": 30,
+            "description": "Slot davomiyligi (daqiqa)"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true,
+            "default": true
+          }
+        },
+        "required": [
+          "clinicId",
+          "dayOfWeek",
+          "startTime",
+          "endTime"
+        ]
+      },
+      "UpdateDoctorSchedulesDto": {
+        "type": "object",
+        "properties": {
+          "schedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DoctorScheduleItemDto"
+            }
+          }
+        },
+        "required": [
+          "schedules"
+        ]
+      },
+      "AddCertificateDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Kardiologiya bo‘yicha xalqaro sertifikat"
+          },
+          "fileUrl": {
+            "type": "string",
+            "example": "/uploads/diploma/cert-intl.pdf"
+          }
+        },
+        "required": [
+          "title",
+          "fileUrl"
+        ]
+      },
+      "TimeSlotDto": {
+        "type": "object",
+        "properties": {
+          "startTime": {
+            "type": "string",
+            "example": "09:00",
+            "description": "Boshlanish vaqti (HH:mm)"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "09:30",
+            "description": "Tugash vaqti (HH:mm)"
+          },
+          "isAvailable": {
+            "type": "boolean",
+            "example": true,
+            "description": "Bo‘shmi yoki band"
+          }
+        },
+        "required": [
+          "startTime",
+          "endTime",
+          "isAvailable"
+        ]
+      },
+      "ReviewPatientBriefDto": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Bekzod"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Toshmatov"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName"
+        ]
+      },
+      "ReviewResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "r-uuid-1"
+          },
+          "doctorId": {
+            "type": "string",
+            "example": "d-uuid-1"
+          },
+          "patientId": {
+            "type": "string",
+            "example": "p-uuid-1"
+          },
+          "rating": {
+            "type": "number",
+            "example": 5
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "example": "Ajoyib shifokor!"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-03T10:00:00.000Z"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/ReviewPatientBriefDto"
+          }
+        },
+        "required": [
+          "id",
+          "doctorId",
+          "patientId",
+          "rating",
+          "createdAt",
+          "patient"
+        ]
+      },
+      "CreateDoctorDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "anvar.karimov@med.uz"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998901001001"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 6,
+            "example": "DocPass123!"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Anvar"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Karimov"
+          },
+          "specializationId": {
+            "type": "string",
+            "example": "spec-uuid-1"
+          },
+          "experienceYears": {
+            "type": "number",
+            "minimum": 0,
+            "example": 12
+          },
+          "bio": {
+            "type": "string",
+            "example": "Oliy toifali kardiolog"
+          },
+          "education": {
+            "type": "string",
+            "example": "Toshkent Tibbiyot Akademiyasi"
+          },
+          "consultationPrice": {
+            "type": "number",
+            "minimum": 0,
+            "example": 200000
+          },
+          "clinicIds": {
+            "example": [
+              "clinic-uuid-1"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "firstName",
+          "lastName",
+          "specializationId",
+          "experienceYears",
+          "consultationPrice"
+        ]
+      },
+      "ClinicWorkingHourItemDto": {
+        "type": "object",
+        "properties": {
+          "dayOfWeek": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 7,
+            "example": 1,
+            "description": "1=Dushanba ... 7=Yakshanba"
+          },
+          "openTime": {
+            "type": "string",
+            "example": "08:00",
+            "description": "Ochilish vaqti (HH:mm)"
+          },
+          "closeTime": {
+            "type": "string",
+            "example": "18:00",
+            "description": "Yopilish vaqti (HH:mm)"
+          },
+          "isClosed": {
+            "type": "boolean",
+            "example": false,
+            "description": "Dam olish kunimi"
+          }
+        },
+        "required": [
+          "dayOfWeek",
+          "openTime",
+          "closeTime",
+          "isClosed"
+        ]
+      },
+      "ClinicResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "name": {
+            "type": "string",
+            "example": "Shox Med Center"
+          },
+          "address": {
+            "type": "string",
+            "example": "Mirobod t., Oybek ko‘chasi, 12"
+          },
+          "city": {
+            "type": "string",
+            "example": "Toshkent"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998712001122"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": "shox@med.uz"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Tibbiyot markazi"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true,
+            "example": "/logos/shox.png"
+          },
+          "imageUrls": {
+            "example": [
+              "/images/clinic1.jpg"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "workingHours": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClinicWorkingHourItemDto"
+            }
+          },
+          "rating": {
+            "type": "number",
+            "example": 4.8
+          },
+          "reviewsCount": {
+            "type": "number",
+            "example": 42
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "address",
+          "city",
+          "phone",
+          "imageUrls",
+          "workingHours",
+          "rating",
+          "reviewsCount",
+          "isActive"
+        ]
+      },
+      "ServiceResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "s1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "name": {
+            "type": "string",
+            "example": "Birlamchi konsultatsiya"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Shifokor ko‘rigi va tashxis"
+          },
+          "price": {
+            "type": "number",
+            "example": 150000
+          },
+          "durationMinutes": {
+            "type": "number",
+            "example": 30
+          },
+          "clinicId": {
+            "type": "string",
+            "example": "c1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "price",
+          "durationMinutes",
+          "clinicId",
+          "isActive"
+        ]
+      },
+      "ClinicDetailResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "c1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "name": {
+            "type": "string",
+            "example": "Shox Med Center"
+          },
+          "address": {
+            "type": "string",
+            "example": "Mirobod t., Oybek ko‘chasi, 12"
+          },
+          "city": {
+            "type": "string",
+            "example": "Toshkent"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998712001122"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": "shox@med.uz"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Tibbiyot markazi"
+          },
+          "logoUrl": {
+            "type": "string",
+            "nullable": true,
+            "example": "/logos/shox.png"
+          },
+          "imageUrls": {
+            "example": [
+              "/images/clinic1.jpg"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "workingHours": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClinicWorkingHourItemDto"
+            }
+          },
+          "rating": {
+            "type": "number",
+            "example": 4.8
+          },
+          "reviewsCount": {
+            "type": "number",
+            "example": 42
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceResponseDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "address",
+          "city",
+          "phone",
+          "imageUrls",
+          "workingHours",
+          "rating",
+          "reviewsCount",
+          "isActive",
+          "services"
+        ]
+      },
+      "CreateClinicDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Shox Med Center",
+            "description": "Klinika nomi"
+          },
+          "address": {
+            "type": "string",
+            "example": "Mirobod t., Oybek ko‘chasi, 12",
+            "description": "Manzili"
+          },
+          "city": {
+            "type": "string",
+            "example": "Toshkent",
+            "description": "Shahar"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998712001122",
+            "description": "Telefon raqami"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "shox@med.uz",
+            "description": "Elektron pochta"
+          },
+          "description": {
+            "type": "string",
+            "example": "Zamonaviy ko‘p tarmoqli tibbiyot markazi",
+            "description": "Tavsif"
+          },
+          "logoUrl": {
+            "type": "string",
+            "example": "/uploads/clinics/logo.png",
+            "description": "Logotip"
+          },
+          "imageUrls": {
+            "example": [
+              "/uploads/clinics/img1.jpg"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "workingHours": {
+            "description": "Ish vaqtlari jadvali",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClinicWorkingHourItemDto"
+            }
+          },
+          "managerId": {
+            "type": "string",
+            "example": "u-manager-id",
+            "description": "Boshqaruvchi ID (CLINIC_MANAGER)"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true,
+            "default": true
+          }
+        },
+        "required": [
+          "name",
+          "address",
+          "city",
+          "phone"
+        ]
+      },
+      "UpdateClinicDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Shox Med Center"
+          },
+          "address": {
+            "type": "string",
+            "example": "Mirobod t., Oybek ko‘chasi, 12"
+          },
+          "city": {
+            "type": "string",
+            "example": "Toshkent"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+998712001122"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "shox@med.uz"
+          },
+          "description": {
+            "type": "string",
+            "example": "Zamonaviy ko‘p tarmoqli tibbiyot markazi"
+          },
+          "logoUrl": {
+            "type": "string",
+            "example": "/uploads/clinics/logo.png"
+          },
+          "imageUrls": {
+            "example": [
+              "/uploads/clinics/img1.jpg"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "workingHours": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClinicWorkingHourItemDto"
+            }
+          },
+          "managerId": {
+            "type": "string",
+            "example": "u-manager-id"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "AddDoctorToClinicDto": {
+        "type": "object",
+        "properties": {
+          "doctorId": {
+            "type": "string",
+            "example": "doc-uuid-1234",
+            "description": "Doktor identifikatori"
+          }
+        },
+        "required": [
+          "doctorId"
+        ]
+      },
+      "SpecializationResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+          },
+          "name": {
+            "type": "string",
+            "example": "Kardiologiya"
+          },
+          "slug": {
+            "type": "string",
+            "example": "kardiolog"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "example": "Yurak kasalliklari"
+          },
+          "iconUrl": {
+            "type": "string",
+            "nullable": true,
+            "example": "/icons/cardiology.svg"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "isActive"
+        ]
+      },
+      "CreateSpecializationDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Kardiologiya",
+            "description": "Mutaxassislik nomi"
+          },
+          "slug": {
+            "type": "string",
+            "example": "kardiolog",
+            "description": "URL slug (ixtiyoriy, berilmasa avtomatik yaratiladi)"
+          },
+          "description": {
+            "type": "string",
+            "example": "Yurak-qon tomir tizimi kasalliklari",
+            "description": "Tavsif"
+          },
+          "iconUrl": {
+            "type": "string",
+            "example": "/icons/cardiology.svg",
+            "description": "Ikonka URL manzili"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true,
+            "default": true,
+            "description": "Faollik holati"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateSpecializationDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Kardiologiya",
+            "description": "Mutaxassislik nomi"
+          },
+          "slug": {
+            "type": "string",
+            "example": "kardiolog",
+            "description": "URL slug"
+          },
+          "description": {
+            "type": "string",
+            "example": "Yurak-qon tomir tizimi kasalliklari",
+            "description": "Tavsif"
+          },
+          "iconUrl": {
+            "type": "string",
+            "example": "/icons/cardiology.svg",
+            "description": "Ikonka URL manzili"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true,
+            "description": "Faollik holati"
+          }
+        }
+      },
+      "CreateServiceDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Birlamchi konsultatsiya",
+            "description": "Xizmat nomi"
+          },
+          "description": {
+            "type": "string",
+            "example": "Shifokor ko‘rigi va birlamchi tashxis",
+            "description": "Tavsif"
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "example": 150000,
+            "description": "Xizmat narxi (so‘mda, butun son)"
+          },
+          "durationMinutes": {
+            "type": "number",
+            "minimum": 1,
+            "example": 30,
+            "default": 30,
+            "description": "Davomiyligi (daqiqa)"
+          },
+          "clinicId": {
+            "type": "string",
+            "example": "b1c2d3e4-f5a6-7890-abcd-ef1234567890",
+            "description": "Klinika identifikatori"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true,
+            "default": true,
+            "description": "Faollik holati"
+          }
+        },
+        "required": [
+          "name",
+          "price",
+          "clinicId"
+        ]
+      },
+      "UpdateServiceDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Birlamchi konsultatsiya",
+            "description": "Xizmat nomi"
+          },
+          "description": {
+            "type": "string",
+            "example": "Shifokor ko‘rigi va birlamchi tashxis",
+            "description": "Tavsif"
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0,
+            "example": 150000,
+            "description": "Xizmat narxi (so‘mda)"
+          },
+          "durationMinutes": {
+            "type": "number",
+            "minimum": 1,
+            "example": 30,
+            "description": "Davomiyligi (daqiqa)"
+          },
+          "clinicId": {
+            "type": "string",
+            "example": "b1c2d3e4-f5a6-7890-abcd-ef1234567890"
+          },
+          "isActive": {
+            "type": "boolean",
+            "example": true,
+            "description": "Faollik holati"
+          }
+        }
+      },
+      "CreateAppointmentDto": {
+        "type": "object",
+        "properties": {
+          "doctorId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174002"
+          },
+          "clinicId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174003"
+          },
+          "serviceId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174004"
+          },
+          "appointmentDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "example": "2026-11-10"
+          },
+          "startTime": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+            "example": "09:00"
+          },
+          "reason": {
+            "type": "string",
+            "example": "Bosh og‘rig‘i bo‘yicha maslahat"
+          }
+        },
+        "required": [
+          "doctorId",
+          "clinicId",
+          "appointmentDate",
+          "startTime"
+        ]
+      },
+      "AppointmentPatientBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Ali"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Valiyev"
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "example": "+998901234567"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "phone"
+        ]
+      },
+      "AppointmentDoctorSpecializationBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "name": {
+            "type": "string",
+            "example": "Kardiologiya"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "AppointmentDoctorBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Dr. Jasur"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Karimov"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "nullable": true,
+            "example": "/uploads/avatar/jasur.jpg"
+          },
+          "specialization": {
+            "$ref": "#/components/schemas/AppointmentDoctorSpecializationBriefDto"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName",
+          "avatarUrl",
+          "specialization"
+        ]
+      },
+      "AppointmentClinicBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "name": {
+            "type": "string",
+            "example": "Shox Med Center"
+          },
+          "address": {
+            "type": "string",
+            "example": "Mirobod t., Oybek ko‘chasi, 12"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "address"
+        ]
+      },
+      "AppointmentResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "patientId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "doctorId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174002"
+          },
+          "clinicId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174003"
+          },
+          "serviceId": {
+            "type": "string",
+            "nullable": true,
+            "example": "123e4567-e89b-12d3-a456-426614174004"
+          },
+          "appointmentDate": {
+            "type": "string",
+            "example": "2026-11-10"
+          },
+          "startTime": {
+            "type": "string",
+            "example": "09:00"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "09:30"
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true,
+            "example": "Bosh og‘rig‘i bo‘yicha maslahat"
+          },
+          "status": {
+            "enum": [
+              "PENDING",
+              "CONFIRMED",
+              "CANCELLED",
+              "COMPLETED",
+              "REJECTED"
+            ],
+            "type": "string",
+            "example": "PENDING"
+          },
+          "cancelReason": {
+            "type": "string",
+            "nullable": true,
+            "example": null
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-03T10:00:00.000Z"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-03T10:00:00.000Z"
+          },
+          "patient": {
+            "$ref": "#/components/schemas/AppointmentPatientBriefDto"
+          },
+          "doctor": {
+            "$ref": "#/components/schemas/AppointmentDoctorBriefDto"
+          },
+          "clinic": {
+            "$ref": "#/components/schemas/AppointmentClinicBriefDto"
+          }
+        },
+        "required": [
+          "id",
+          "patientId",
+          "doctorId",
+          "clinicId",
+          "serviceId",
+          "appointmentDate",
+          "startTime",
+          "endTime",
+          "reason",
+          "status",
+          "cancelReason",
+          "createdAt",
+          "updatedAt",
+          "patient",
+          "doctor",
+          "clinic"
+        ]
+      },
+      "RescheduleAppointmentDto": {
+        "type": "object",
+        "properties": {
+          "appointmentDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "example": "2026-11-11"
+          },
+          "startTime": {
+            "type": "string",
+            "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$",
+            "example": "10:00"
+          }
+        },
+        "required": [
+          "appointmentDate",
+          "startTime"
+        ]
+      },
+      "CancelAppointmentDto": {
+        "type": "object",
+        "properties": {
+          "cancelReason": {
+            "type": "string",
+            "example": "Rejalarim o‘zgardi"
+          }
+        }
+      },
+      "RejectAppointmentDto": {
+        "type": "object",
+        "properties": {
+          "cancelReason": {
+            "type": "string",
+            "example": "Shifokor shoshilinch operatsiyada"
+          }
+        }
+      },
+      "UpdateAppointmentStatusDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "enum": [
+              "PENDING",
+              "CONFIRMED",
+              "CANCELLED",
+              "COMPLETED",
+              "REJECTED"
+            ],
+            "type": "string",
+            "example": "CONFIRMED"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "NotificationResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "userId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "type": {
+            "enum": [
+              "APPOINTMENT_CREATED",
+              "APPOINTMENT_CONFIRMED",
+              "APPOINTMENT_CANCELLED",
+              "APPOINTMENT_RESCHEDULED",
+              "APPOINTMENT_REJECTED",
+              "NEW_PATIENT_BOOKED",
+              "APPOINTMENT_REMINDER"
+            ],
+            "type": "string",
+            "example": "APPOINTMENT_CREATED"
+          },
+          "title": {
+            "type": "string",
+            "example": "Qabul yaratildi"
+          },
+          "message": {
+            "type": "string",
+            "example": "Shifokor: Dr. Jasur Karimov, Sana: 2026-11-10 10:00"
+          },
+          "data": {
+            "type": "object",
+            "additionalProperties": true,
+            "nullable": true,
+            "example": {
+              "appointmentId": "123e4567-e89b-12d3-a456-426614174002"
+            }
+          },
+          "isRead": {
+            "type": "boolean",
+            "example": false
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-03T10:00:00.000Z"
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "type",
+          "title",
+          "message",
+          "data",
+          "isRead",
+          "createdAt"
+        ]
+      },
+      "UnreadCountResponseDto": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number",
+            "example": 3
+          }
+        },
+        "required": [
+          "count"
+        ]
+      },
+      "MarkAllReadResponseDto": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number",
+            "example": 3
+          }
+        },
+        "required": [
+          "count"
+        ]
+      },
+      "CreateMedicalRecordDto": {
+        "type": "object",
+        "properties": {
+          "patientId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "appointmentId": {
+            "type": "string",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174003",
+            "nullable": true
+          },
+          "diagnosis": {
+            "type": "string",
+            "example": "Gipertoniya 1-bosqich"
+          },
+          "conclusion": {
+            "type": "string",
+            "example": "Arterial bosimning o‘rtacha ko‘tarilishi kuzatildi"
+          },
+          "recommendations": {
+            "type": "string",
+            "example": "Sog‘lom turmush tarzi, tuz miqdorini kamaytirish"
+          }
+        },
+        "required": [
+          "patientId",
+          "diagnosis",
+          "conclusion"
+        ]
+      },
+      "MedicalRecordDoctorBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jasur"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Karimov"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName"
+        ]
+      },
+      "MedicalDocumentResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "patientId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "recordId": {
+            "type": "string",
+            "nullable": true,
+            "example": "123e4567-e89b-12d3-a456-426614174002"
+          },
+          "uploadedById": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174003"
+          },
+          "type": {
+            "enum": [
+              "LAB_RESULT",
+              "DIAGNOSIS",
+              "PRESCRIPTION",
+              "IMAGING",
+              "OTHER"
+            ],
+            "type": "string",
+            "example": "LAB_RESULT"
+          },
+          "title": {
+            "type": "string",
+            "example": "Umumiy qon tahlili natijasi"
+          },
+          "fileName": {
+            "type": "string",
+            "example": "qon_tahlili.pdf"
+          },
+          "mimeType": {
+            "type": "string",
+            "example": "application/pdf"
+          },
+          "size": {
+            "type": "number",
+            "example": 1048576
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-03T10:00:00.000Z"
+          }
+        },
+        "required": [
+          "id",
+          "patientId",
+          "recordId",
+          "uploadedById",
+          "type",
+          "title",
+          "fileName",
+          "mimeType",
+          "size",
+          "createdAt"
+        ]
+      },
+      "MedicalRecordResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "patientId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "doctorId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174002"
+          },
+          "appointmentId": {
+            "type": "string",
+            "nullable": true,
+            "example": "123e4567-e89b-12d3-a456-426614174003"
+          },
+          "diagnosis": {
+            "type": "string",
+            "example": "Gipertoniya 1-bosqich"
+          },
+          "conclusion": {
+            "type": "string",
+            "example": "Arterial bosimning o‘rtacha ko‘tarilishi kuzatildi"
+          },
+          "recommendations": {
+            "type": "string",
+            "nullable": true,
+            "example": "Sog‘lom turmush tarzi, tuz miqdorini kamaytirish"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-03T10:00:00.000Z"
+          },
+          "doctor": {
+            "$ref": "#/components/schemas/MedicalRecordDoctorBriefDto"
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MedicalDocumentResponseDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "patientId",
+          "doctorId",
+          "appointmentId",
+          "diagnosis",
+          "conclusion",
+          "recommendations",
+          "createdAt",
+          "doctor",
+          "documents"
+        ]
+      },
+      "UpdateMedicalRecordDto": {
+        "type": "object",
+        "properties": {
+          "diagnosis": {
+            "type": "string",
+            "example": "Gipertoniya 1-bosqich, barqaror"
+          },
+          "conclusion": {
+            "type": "string",
+            "example": "Bosim ko‘rsatkichlari me’yorga qaytdi"
+          },
+          "recommendations": {
+            "type": "string",
+            "example": "Davolash rejasini davom ettirish"
+          }
+        }
+      },
+      "CreateReviewDto": {
+        "type": "object",
+        "properties": {
+          "doctorId": {
+            "type": "string",
+            "example": "d1-uuid",
+            "description": "Doktor ID"
+          },
+          "appointmentId": {
+            "type": "string",
+            "example": "a1-uuid",
+            "description": "Tugallangan qabul ID (faqat COMPLETED)"
+          },
+          "rating": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5,
+            "example": 5,
+            "description": "Baho (1 dan 5 gacha)"
+          },
+          "comment": {
+            "type": "string",
+            "example": "Shifokor juda xushmuomala va professional!",
+            "description": "Izoh"
+          }
+        },
+        "required": [
+          "doctorId",
+          "appointmentId",
+          "rating"
+        ]
+      },
+      "UploadedImageResponseDto": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "example": "/uploads/avatar/a1b2c3d4-e5f6.jpg"
+          },
+          "fileName": {
+            "type": "string",
+            "example": "a1b2c3d4-e5f6.jpg"
+          },
+          "mimeType": {
+            "type": "string",
+            "example": "image/jpeg"
+          },
+          "size": {
+            "type": "number",
+            "example": 204850
+          }
+        },
+        "required": [
+          "url",
+          "fileName",
+          "mimeType",
+          "size"
+        ]
+      },
+      "AdminStatsResponseDto": {
+        "type": "object",
+        "properties": {
+          "totalUsers": {
+            "type": "number",
+            "example": 150
+          },
+          "totalDoctors": {
+            "type": "number",
+            "example": 25
+          },
+          "totalPatients": {
+            "type": "number",
+            "example": 120
+          },
+          "totalClinics": {
+            "type": "number",
+            "example": 8
+          },
+          "todayAppointments": {
+            "type": "number",
+            "example": 14
+          },
+          "confirmedAppointments": {
+            "type": "number",
+            "example": 85
+          },
+          "cancelledAppointments": {
+            "type": "number",
+            "example": 12
+          },
+          "newUsersThisWeek": {
+            "type": "number",
+            "example": 19
+          }
+        },
+        "required": [
+          "totalUsers",
+          "totalDoctors",
+          "totalPatients",
+          "totalClinics",
+          "todayAppointments",
+          "confirmedAppointments",
+          "cancelledAppointments",
+          "newUsersThisWeek"
+        ]
+      },
+      "AppointmentsChartPointDto": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "example": "2026-11-03"
+          },
+          "total": {
+            "type": "number",
+            "example": 10
+          },
+          "confirmed": {
+            "type": "number",
+            "example": 7
+          },
+          "cancelled": {
+            "type": "number",
+            "example": 2
+          }
+        },
+        "required": [
+          "date",
+          "total",
+          "confirmed",
+          "cancelled"
+        ]
+      },
+      "AdminLogAdminBriefDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Super"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Admin"
+          }
+        },
+        "required": [
+          "id",
+          "firstName",
+          "lastName"
+        ]
+      },
+      "AdminLogResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "adminId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "action": {
+            "type": "string",
+            "example": "BLOCK_USER"
+          },
+          "entity": {
+            "type": "string",
+            "example": "User"
+          },
+          "entityId": {
+            "type": "string",
+            "nullable": true,
+            "example": "123e4567-e89b-12d3-a456-426614174002"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "nullable": true,
+            "example": {
+              "reason": "Spam"
+            }
+          },
+          "ipAddress": {
+            "type": "string",
+            "nullable": true,
+            "example": "127.0.0.1"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2026-11-03T10:00:00.000Z"
+          },
+          "admin": {
+            "$ref": "#/components/schemas/AdminLogAdminBriefDto"
+          }
+        },
+        "required": [
+          "id",
+          "adminId",
+          "action",
+          "entity",
+          "entityId",
+          "metadata",
+          "ipAddress",
+          "createdAt",
+          "admin"
+        ]
+      },
+      "PlatformSettingsResponseDto": {
+        "type": "object",
+        "properties": {
+          "platformName": {
+            "type": "string",
+            "example": "MED Medical Platform"
+          },
+          "supportPhone": {
+            "type": "string",
+            "example": "+998712000000"
+          },
+          "supportEmail": {
+            "type": "string",
+            "example": "support@med.uz"
+          }
+        },
+        "required": [
+          "platformName",
+          "supportPhone",
+          "supportEmail"
+        ]
+      },
+      "UpdatePlatformSettingsDto": {
+        "type": "object",
+        "properties": {
+          "platformName": {
+            "type": "string",
+            "example": "MED Medical Platform"
+          },
+          "supportPhone": {
+            "type": "string",
+            "example": "+998712000000"
+          },
+          "supportEmail": {
+            "type": "string",
+            "format": "email",
+            "example": "support@med.uz"
+          }
+        }
+      },
+      "UserPermissionItemDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "email": {
+            "type": "string",
+            "nullable": true,
+            "example": "ali@med.uz"
+          },
+          "role": {
+            "enum": [
+              "SUPER_ADMIN",
+              "ADMIN",
+              "DOCTOR",
+              "PATIENT",
+              "CLINIC_MANAGER"
+            ],
+            "type": "string",
+            "example": "ADMIN"
+          },
+          "permissions": {
+            "example": [
+              "users:read",
+              "users:write"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "userId",
+          "email",
+          "role",
+          "permissions"
+        ]
+      },
+      "PermissionsResponseDto": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "example": [
+              "users:read",
+              "users:write",
+              "users:block",
+              "doctors:manage",
+              "clinics:manage",
+              "settings:manage"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserPermissionItemDto"
+            }
+          }
+        },
+        "required": [
+          "permissions",
+          "users"
+        ]
+      },
+      "UpdateUserPermissionsDto": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "example": [
+              "users:read",
+              "users:write"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "permissions"
+        ]
+      },
+      "UpdateUserPermissionsResponseDto": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "example": "123e4567-e89b-12d3-a456-426614174001"
+          },
+          "permissions": {
+            "example": [
+              "users:read",
+              "users:write"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "userId",
+          "permissions"
+        ]
+      },
+      "PublicOverviewResponseDto": {
+        "type": "object",
+        "properties": {
+          "doctorsCount": {
+            "type": "number",
+            "example": 6,
+            "description": "Faol shifokorlar soni"
+          },
+          "clinicsCount": {
+            "type": "number",
+            "example": 3,
+            "description": "Faol klinikalar soni"
+          },
+          "specializationsCount": {
+            "type": "number",
+            "example": 10,
+            "description": "Faol mutaxassisliklar soni"
+          },
+          "patientsCount": {
+            "type": "number",
+            "example": 3,
+            "description": "Ro‘yxatdan o‘tgan bemorlar soni"
+          }
+        },
+        "required": [
+          "doctorsCount",
+          "clinicsCount",
+          "specializationsCount",
+          "patientsCount"
+        ]
+      }
+    }
+  }
+}
